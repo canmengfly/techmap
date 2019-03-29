@@ -1,0 +1,656 @@
+@import 'bourbon'; // http://bourbon.io/
+
+@import '../partials/variables'; // colors, fonts etc...
+
+@import '../partials/mixins'; // custom mixins
+
+@import '../partials/layout'; // responsive grid and media queries
+
+/* -------------------------------- 
+
+Primary style
+
+-------------------------------- */
+
+*, *::after, *::before {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	font: {
+		size: 1.6rem;
+		family: $primary-font; // variables inside partials > _variables.scss
+	}
+	color: $color-1;
+	background-color: $color-3;
+}
+
+a {
+	color: $color-2;
+	text-decoration: none;
+}
+
+img {
+	max-width: 100%;
+}
+
+/* -------------------------------- 
+
+Stretchy Nav style - common to:
+ - basic navigation
+ - add-content navigation
+ - edit-content navigation
+
+-------------------------------- */
+
+.cd-stretchy-nav {
+	position: fixed;
+	z-index: 2;
+	top: 40px;
+	right: 5%;
+	pointer-events: none;
+
+	.stretchy-nav-bg {
+		/* this is the stretching navigation background */
+		position: absolute;
+		z-index: 1;
+		top: 0;
+		right: 0;
+		width: 60px;
+		height: 60px;
+		border-radius: 30px;
+		background: $color-2;
+		box-shadow: 0 1px 4px rgba(#000, .2);
+		@include transition(height .2s, box-shadow .2s);
+	}
+
+	&.nav-is-visible {
+		pointer-events: auto;
+	}
+
+	&.nav-is-visible .stretchy-nav-bg {
+		height: 100%;
+		box-shadow: 0 6px 30px rgba(#000, .2);
+	}
+}
+
+.cd-nav-trigger {
+	position: absolute;
+	z-index: 3;
+	top: 0;
+	right: 0;
+	height: 60px;
+	width: 60px;
+	border-radius: 50%;
+	/* replace text with image */
+	overflow: hidden;
+	white-space: nowrap;
+	color: transparent;
+	pointer-events: auto;
+
+	span, span::after, span::before {
+		/* this is the hamburger icon */
+		position: absolute;
+		width: 16px;
+		height: 2px;
+		background-color: $color-3;
+	}
+	
+	span {
+		/* middle line of the hamburger icon */
+		@include center;
+		@include transition(background-color .2s);
+	}
+
+	span::after, span::before {
+		/* top and bottom lines of the hamburger icon */
+		content: '';
+		top: 0;
+		left: 0;
+		@include backface-visibility(hidden);
+		@include transition(transform .2s);
+	}
+
+	span::before {
+		@include transform(translateY(-6px));
+	}
+
+	span::after {
+		@include transform(translateY(6px));
+	}
+
+	.no-touch &:hover ~ .stretchy-nav-bg {
+		box-shadow: 0 6px 30px rgba(#000, .2);
+	}
+
+	.nav-is-visible & {
+
+		span {
+			background-color: transparent;
+		}
+
+		span::before {
+			@include transform(rotate(-45deg));
+		}
+
+		span::after {
+			@include transform(rotate(45deg));
+		}
+	}
+}
+
+.cd-stretchy-nav ul {
+	position: relative;
+	z-index: 2;
+	padding: 60px 0 0;
+	visibility: hidden;
+	@include transition(visibility .3s);
+	text-align: right;
+
+	a {
+		position: relative;
+		display: block;
+		height: 50px;
+		line-height: 50px;
+		padding: 0 calc(1em + 60px) 0 1em;
+		color: rgba($color-3, .7);
+		font-size: 1.4rem;
+		@include transition(color .2s);
+
+		&::after {
+			/* navigation item icons */
+			content: '';
+			position: absolute;
+			height: 16px;
+			width: 16px;
+			right: 22px;
+			top: 50%;
+			@include transform(translateY(-50%) scale(0));
+			opacity: .6;
+			background: url(../img/cd-sprite-1.svg) no-repeat 0 0;
+		}
+
+		&::before {
+			/* line visible next to the active navigation item */
+			content: '';
+			position: absolute;
+			width: 3px;
+			height: 16px;
+			top: 50%;
+			right: 60px;
+			@include transform(translateX(3px) translateY(-50%) scaleY(0));
+			background-color: $color-4;
+		}
+	}
+
+	li:first-of-type a::after {
+		/* change custom icon using image sprites */
+		background-position: -32px 0;
+	}
+
+	li:nth-of-type(2) a::after {
+		background-position: -64px 0;
+	}
+
+	li:nth-of-type(3) a::after {
+		background-position: -48px 0;
+	}
+
+	li:nth-of-type(4) a::after {
+		background-position: 0 0;
+	}
+
+	li:nth-of-type(5) a::after {
+		background-position: -16px 0;
+	}
+
+	span {
+		/* navigation item labels */
+		display: block;
+		opacity: 0;
+		@include transform(translateX(-25px));
+	}
+}
+
+.cd-stretchy-nav.nav-is-visible ul {
+	visibility: visible;
+
+	a::after {
+		/* navigation item icons */
+		@include transform(translateY(-50%) scale(1));
+		@include animation(scaleIn .15s backwards);
+		@include transition(opacity .2s);
+	}
+
+	a.active {
+		color: $color-3;
+
+		&::after {
+			opacity: 1;
+		}
+
+		&::before {
+			@include transform(translateX(3px) translateY(-50%) scaleY(1));
+			@include transition(transform .15s .3s);
+		}
+	}
+
+	span {
+		opacity: 1;
+		@include transform(translateX(0));
+		@include animation(slideIn .15s backwards);
+		@include transition(transform .2s);
+	}
+
+	.no-touch & a:hover {
+		color: $color-3;
+
+		&::after {
+			opacity: 1;
+		}
+
+		span {
+			@include transform(translateX(-5px));
+		}
+	}
+
+	li:first-of-type a::after, 
+	li:first-of-type span {
+		@include animation-delay(.05s);
+	}
+
+	li:nth-of-type(2) a::after, 
+	li:nth-of-type(2) span {
+		@include animation-delay(.1s);
+	}
+
+	li:nth-of-type(3) a::after, 
+	li:nth-of-type(3) span {
+		@include animation-delay(.15s);
+	}
+
+	li:nth-of-type(4) a::after, 
+	li:nth-of-type(4) span {
+		@include animation-delay(.2s);
+	}
+
+	li:nth-of-type(5) a::after, 
+	li:nth-of-type(5) span {
+		@include animation-delay(.25s);
+	}
+}
+
+/* -------------------------------- 
+
+add-content navigation style
+
+-------------------------------- */
+
+.cd-stretchy-nav.add-content {
+	bottom: 50px;
+	top: auto;
+	@include center(x);
+	width: 300px;
+	
+	.stretchy-nav-bg { 
+		@include center(x);
+		background-color: darken($color-2, 5%);
+		@include transition(width .2s, box-shadow .2s);
+	}
+
+	&.nav-is-visible .stretchy-nav-bg {
+		width: 100%;
+		box-shadow: 0 6px 30px rgba(#000, .2);
+	}
+}
+
+.cd-stretchy-nav.add-content .cd-nav-trigger {
+	@include center(x);
+	background-color: $color-2;
+
+	span {
+		background-color: transparent;
+	}
+
+	span::before {
+		/* used to create the plus icon */
+		@include transform(rotate(90deg));
+	}
+
+	span::after {
+		/* used to create the plus icon */
+		@include transform(rotate(0deg));
+	}
+}
+
+.cd-stretchy-nav.add-content.nav-is-visible .cd-nav-trigger {
+	box-shadow: 0 4px 30px rgba(#000, .2);
+
+	span::before {
+		@include transform(rotate(-135deg));
+	}
+
+	span::after {
+		@include transform(rotate(-225deg));
+	}
+}
+
+.cd-stretchy-nav.add-content ul {
+	padding-top: 0;
+	@include clearfix;
+
+	li {
+		display: inline-block;
+		float: left;
+		width: 60px;
+
+		&:nth-of-type(2) {
+			/* space occupied by the navigation trigger */
+			margin-right: 60px;
+		}
+	}
+
+	a {
+		padding: 0;
+		height: 60px;
+		width: 100%;
+
+		&::after {
+			top: 50%;
+			left: 22px;
+			right: auto;
+			@include transform(translateY(-50%) scale(0));
+			background-image: url(../img/cd-sprite-2.svg);
+		}
+	}
+
+	li:first-of-type a::after {
+		background-position: -16px 0px;
+	}
+
+	li:nth-of-type(2) a::after {
+		background-position: 0px 0px;
+	}
+
+	li:nth-of-type(3) a::after {
+		background-position: -48px 0px;
+	}
+
+	li:nth-of-type(4) a::after {
+		background-position: -32px 0px;
+	}
+
+	li:first-of-type a::after, 
+	li:nth-of-type(4) a::after {
+		@include animation-delay(.2s);
+	}
+
+	li:nth-of-type(2) a::after, 
+	li:nth-of-type(3) a::after {
+		@include animation-delay(.1s);
+	}
+}
+
+.cd-stretchy-nav.add-content.nav-is-visible ul a::after {
+	@include animation-name(scaleIn);
+	@include transform(translateY(-50%) scale(1));
+}
+
+.cd-stretchy-nav.add-content ul span {
+	position: absolute;
+	left: 0;
+	top: -20px;
+	width: 100%;
+	padding: 0.6em 0;
+	opacity: 0;
+	visibility: hidden;
+	background-color: rgba(#000, .8);
+	border-radius: 2px;
+	font-size: 1.2rem;
+	line-height: 1;
+	white-space: nowrap;
+	text-align: center;
+	@include transition(opacity .2s, visibility .2s);
+	/* reset default style */
+	@include transform(translateX(0));
+
+	&::after {
+		/* triangle below the tooltip */
+		content: '';
+		position: absolute;
+		top: 100%;
+		@include center(x);
+		height: 0;
+		width: 0;
+		border: 4px solid transparent;
+		border-top-color: rgba(#000, .8);
+	}
+}
+
+.cd-stretchy-nav.add-content.nav-is-visible ul span {
+	/* reset default style */
+	@include animation(none);
+}
+
+.no-touch .cd-stretchy-nav.add-content.nav-is-visible ul a:hover span {
+	opacity: 1;
+	visibility: visible;
+	/* reset default style */
+	@include transform(translateX(0));
+}
+
+/* -------------------------------- 
+
+edit content
+
+-------------------------------- */
+.cd-editable-content {
+	/* used to wrap the image and the navigation */
+	position: relative;
+	width: 90%;
+	max-width: 400px;
+	margin: 4em auto;
+
+	img {
+		display: block;
+		border-radius: .25em;
+	}
+}
+
+.cd-stretchy-nav.edit-content {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+
+	.stretchy-nav-bg {
+		height: 30px;
+		width: 30px;
+		background-color: rgba(#000, .4);
+		box-shadow: none;
+		@include transition(background .2s, height .2s);
+	}
+
+	&.nav-is-visible .stretchy-nav-bg {
+		height: 100%;
+		background-color: rgba(#000, .8);
+		/* reset default style */
+		box-shadow: none;
+	}
+}
+
+.cd-stretchy-nav.edit-content .cd-nav-trigger {
+	height: 30px;
+	width: 30px;
+
+	span {
+		opacity: 0;
+		background-color: transparent;
+
+		&::before {
+			@include transform(rotate(-45deg));
+		}
+
+		&::after {
+			@include transform(rotate(45deg));
+		}
+	}
+
+	span, span::before, span::after {
+		/* used to create the 'X' icon when the navigation is open */
+		width: 12px;
+	}
+
+	&::after {
+		/* edit icon */
+		content: '';
+		position: absolute;
+		height: 16px;
+		width: 16px;
+		@include center;
+		background: url(../img/cd-sprite-3.svg) no-repeat 0 0;
+	}
+
+	span, &::after {
+		@include transition(opacity .2s);
+	}
+
+	.no-touch &:hover ~ .stretchy-nav-bg {
+		box-shadow: none;
+		background-color: rgba(#000, .8);
+	}
+}
+
+.cd-stretchy-nav.edit-content.nav-is-visible .cd-nav-trigger span {
+	opacity: 1;
+
+	&::before {
+		@include transform(rotate(45deg));
+	}
+
+	&::after {
+		@include transform(rotate(135deg));
+	}
+}
+
+.cd-stretchy-nav.edit-content.nav-is-visible .cd-nav-trigger::after {
+	/* hide edit icon */
+	opacity: 0;
+}
+
+.cd-stretchy-nav.edit-content ul {
+	padding-top: 30px;
+}
+
+.cd-stretchy-nav.edit-content ul a {
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	padding: 0;
+
+	&::after {
+		right: 7px;
+		background-image: url(../img/cd-sprite-3.svg);
+	}
+}
+
+.cd-stretchy-nav.edit-content ul li:first-of-type a::after {
+	background-position: -16px 0;
+}
+
+.cd-stretchy-nav.edit-content ul li:nth-of-type(2) a::after {
+	background-position: -32px 0;
+}
+
+.cd-stretchy-nav.edit-content ul li:nth-of-type(3) a::after {
+	background-position: -48px 0;
+}
+
+.cd-stretchy-nav.edit-content ul li:nth-of-type(4) a::after {
+	background-position: -64px 0;
+}
+
+.cd-stretchy-nav.edit-content ul span {
+	position: absolute;
+	top: 0;
+	right: 35px;
+	height: 30px;
+	line-height: 30px;
+	padding: 0 1em;
+	opacity: 0;
+	visibility: hidden;
+	background-color: rgba(#000, .55);
+	border-radius: 2px;
+	text-align: center;
+	@include transition(opacity .2s, visibility .2s);
+
+	&::after {
+		/* triangle below the tooltip */
+		content: '';
+		position: absolute;
+		left: 100%;
+		@include center(y);
+		height: 0;
+		width: 0;
+		border: 4px solid transparent;
+		border-left-color: rgba(#000, .55);
+	}
+}
+
+.cd-stretchy-nav.edit-content.nav-is-visible ul {
+
+	span {
+		/* reset default style */
+		@include animation(none);
+	}
+
+	.no-touch & a:hover span {
+		opacity: 1;
+		visibility: visible;
+		/* reset default style */
+		@include transform(translateX(0));
+	}
+}
+
+/* -------------------------------- 
+
+main content basic style
+
+-------------------------------- */
+
+.cd-main-content {
+	position: relative;
+	z-index: 1;
+	min-height: 100vh;
+	padding: 0 0;
+	background-color: $color-1;
+}
+
+/* -------------------------------- 
+
+keyframes
+
+-------------------------------- */
+
+@include keyframes(scaleIn) {
+  from {
+    @include transform(translateY(-50%) scale(0));
+  }
+  to {
+    @include transform(translateY(-50%) scale(1));
+  }
+}
+
+@include keyframes(slideIn) {
+  from {
+   	opacity: 0;
+	@include transform(translateX(-25px));
+  }
+  to {
+    opacity: 1;
+	@include transform(translateX(0));
+  }
+}
