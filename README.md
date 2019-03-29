@@ -1,6 +1,6 @@
 #Full internet tech map.
 
-![TECHMAP](https://img.shields.io/badge/version-1.0-brightgreen.svg)![TECHMAP](https://img.shields.io/badge/License-MIT%20%26%20CC--BY--NC--SA%204.0-blue.svg)
+![TECHMAP](https://img.shields.io/badge/version-1.0-brightgreen.svg)    ![TECHMAP](https://img.shields.io/badge/License-MIT%20%26%20CC--BY--NC--SA%204.0-blue.svg)
 
 
 
