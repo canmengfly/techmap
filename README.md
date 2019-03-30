@@ -6,7 +6,7 @@
 
 ### Start enjoying：
 
-> [ My Server](https://techmap.canmeng.net)
+> [ Techmap Index](https://techmap.canmeng.net)
 >
 > [GitHub Page](https://canmengfly.github.io/techmap/)
 
