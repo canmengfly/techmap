@@ -2,8 +2,8 @@
 
 ![TECHMAP](https://img.shields.io/badge/version-1.0-brightgreen.svg)    ![TECHMAP](https://img.shields.io/badge/License-MIT%20%26%20CC--BY--NC--SA%204.0-blue.svg)
 
-> ![1553916747982](https://raw.githubusercontent.com/canmengfly/techmap/master/img/logo.PNG)
->
+![1553916747982](https://raw.githubusercontent.com/canmengfly/techmap/master/img/logo.PNG)
+
 > ### Start enjoying：
 >
 > [ My Server](https://techmap.canmeng.net)
@@ -23,11 +23,11 @@ Some maps follow the [**CC-BY-NC-SA 4.0**](https://creativecommons.org/licenses/
 
 ------
 
-### 点击如下链接即可查看：
-
-[ 图谱首页](https://techmap.canmeng.net)
-
-[GitHub Page](https://canmengfly.github.io/techmap/)
+> ### 点击如下链接即可查看：
+>
+> [ 图谱首页](https://techmap.canmeng.net)
+>
+> [GitHub Page](https://canmengfly.github.io/techmap/)
 
 项目主要意义在于收集所有互联网相关技术图谱，帮助互联网从业者快速理清相关技术岗位所需要的知识技能与发展方向，差缺补漏。
 
