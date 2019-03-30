@@ -4,8 +4,8 @@
 
 ![1553916747982](https://raw.githubusercontent.com/canmengfly/techmap/master/img/logo.PNG)
 
-> ### Start enjoying：
->
+### Start enjoying：
+
 > [ My Server](https://techmap.canmeng.net)
 >
 > [GitHub Page](https://canmengfly.github.io/techmap/)
@@ -23,8 +23,8 @@ Some maps follow the [**CC-BY-NC-SA 4.0**](https://creativecommons.org/licenses/
 
 ------
 
-> ### 点击如下链接即可查看：
->
+### 点击如下链接即可查看：
+
 > [ 图谱首页](https://techmap.canmeng.net)
 >
 > [GitHub Page](https://canmengfly.github.io/techmap/)
@@ -37,3 +37,7 @@ Some maps follow the [**CC-BY-NC-SA 4.0**](https://creativecommons.org/licenses/
 代码遵循 [**MIT**](https://opensource.org/licenses/MIT) 协议
 
 部分图谱遵循  [**CC-BY-NC-SA 4.0**](https://creativecommons.org/licenses/by-nc-sa/4.0/) 协议
+
+
+
+如需运行在本地，请直接Clone，运行 index.html 即可。
