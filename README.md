@@ -50,11 +50,11 @@ Some maps follow the [**CC-BY-NC-SA 4.0**](https://creativecommons.org/licenses/
 
 
 
-| **TechMap 项目**                                             |
+| 排名不分先后                                                 |
 | ------------------------------------------------------------ |
+| **TechMap 项目**                                             |
 | @梁飞｜资深前端架构师                                        |
 | @沈言单｜阿里首席架构师                                      |
-|                                                              |
 | **skill-map 项目**                                           |
 | [@徐英凯](https://github.com/kevinhsu)｜闪银机器学习工程师   |
 | [@Apollo 技术布道师团队](http://apollo.auto/index_cn.html)   |
@@ -96,5 +96,3 @@ Some maps follow the [**CC-BY-NC-SA 4.0**](https://creativecommons.org/licenses/
 | [@Zhang Wei](https://github.com/zhangwei217245)              |
 | [@吴坚 ](https://github.com/jamsonwoo)｜南航软件工程师       |
 | @黄勇｜特赞科技 CTO、EGO 会员                                |
-|                                                              |
-|                                                              |
