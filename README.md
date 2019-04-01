@@ -29,7 +29,8 @@ Some maps follow the [**CC-BY-NC-SA 4.0**](https://creativecommons.org/licenses/
 >
 > [GitHub Page](https://canmengfly.github.io/techmap/)
 
-项目主要意义在于收集所有互联网相关技术图谱，帮助互联网从业者快速理清相关技术岗位所需要的知识技能与发展方向，差缺补漏。
+部分章节来自 [Skill-map](https://github.com/TeamStuQ/skill-map) 老项目, 已经一年没有任何更新，感觉弃掉很可惜，所以把它接起来。
+此分支项目的主要意义在于收集所有互联网相关技术图谱，帮助互联网从业者快速理清相关技术岗位所需要的知识技能与发展方向，差缺补漏。
 
 本项目将持续更新，后续会邀请腾讯，阿里巴巴等技术 KOL 进行布道。
 如果觉得项目很棒，别忘了点 Star 哦~
