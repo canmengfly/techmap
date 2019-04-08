@@ -35,7 +35,7 @@ Some maps follow the [**CC-BY-NC-SA 4.0**](https://creativecommons.org/licenses/
 本项目将持续更新，后续会邀请腾讯，阿里巴巴等技术 KOL 进行布道。
 如果觉得项目很棒，别忘了点 Star 哦~
 
-代码遵循 [**MIT**](https://opensource.org/licenses/MIT) 
+代码遵循 [**MIT**](https://github.com/canmengfly/techmap/blob/master/LICENSE) 
 
 部分图谱遵循  [**CC-BY-NC-SA 4.0**](https://creativecommons.org/licenses/by-nc-sa/4.0/) 
 
